@@ -1,4 +1,4 @@
-![Docker?](./images/1-docker.png)
+![Docker?](https://github.com/gkandemi/docker/blob/main/docs/images/1-docker.png)
 
 ### Giriş Konuşması
 
@@ -15,7 +15,7 @@ docker run imageName
 ile **container** haline getirmek olacaktır. Bu da tamı tamına yazılımcının istediği envye sahip tüm ayarlar yapılmış halde uygulamanın çalışabileceği en iyi ortamı kurmak demektir.
 
 ## Neden Docker'a İhtiyacımız var?
-![Neden Docker'a İhtiyacımız var?](./images/2-neden-ihtiyacimiz-var.png)
+![Neden Docker'a İhtiyacımız var?](https://github.com/gkandemi/docker/blob/main/docs/images/2-neden-ihtiyacimiz-var.png)
 
 Tüm bu uygulamalar OS ile uyumlu olacak şekilde çalışır. Bizim bu uyumu OS sürümüne göre her bir servis için ayrı ayrı sağlamamız gerekir.
 
@@ -30,7 +30,7 @@ Doğal olarak bu şekilde uygulama geliştirmek bunları yönetmek ve sunucular 
 
 ## Neye İhtiyacımız Var?
 
-![Neye İhtiyacımız var?](./images/3-neye-ihtiyacimiz-var.png)
+![Neye İhtiyacımız var?](https://github.com/gkandemi/docker/blob/main/docs/images/3-neye-ihtiyacimiz-var.png)
 
 Tam olarak burada bu servisler arasında iletişimi en iyi şekilde yapacak ve birbirlerinden etkilenmeden bunu başarılı bir şekilde yönetebilecek bir araca ihtiyacımız oluyor.
 
@@ -42,13 +42,13 @@ Docker bunu yaparken **container** yapısından yararlanıyor. Peki Container Ne
 
 ## Container Nedir?
 
-![Container Nedir?](./images/4-container-nedir.png)
+![Container Nedir?](https://github.com/gkandemi/docker/blob/main/docs/images/4-container-nedir.png)
 
 Container, kendilerine ait prosesleri, servisleri, networkleri bulunan tamamen izole edilmiş ortamlardır (environment). Tıpkı VM gibi fakat her bir VM kendisine ait bir OS barındırırken her bir Container OS kernel'i paylaşmaktadır.
 
 ## Ne Güzel Bir Teknoloji!
 
-![Ne Güzel Bir Teknoloji?](./images/5-ne-guzel-bir-teknoloji.png)
+![Ne Güzel Bir Teknoloji?](https://github.com/gkandemi/docker/blob/main/docs/images/5-ne-guzel-bir-teknoloji.png)
 
 Bu ifade size oldukça devrimsel ve Docker ile yeni ortaya atılmış bir fikir gibi gelebilir fakat tam olarak öyle değil :) Container yaklaşık 10 yıldan beri kullanılmaktadır. Container'ların bir çok türü bulunmaktadır. Bunlardan bazıları;
 
@@ -60,7 +60,7 @@ docker bu container türlerinden **LXC container** türünü kullanmaktadır. İ
 
 ## Docker Nasıl Çalışıyor?
 
-![Docker Nasıl Çalışıyor?](./images/6-docker-nasil-calisiyor.png)
+![Docker Nasıl Çalışıyor?](https://github.com/gkandemi/docker/blob/main/docs/images/6-docker-nasil-calisiyor.png)
 
 Docker'ın nasıl çalıştığını anlamak istiyorsanız ilk olarak İşletim sisteminin nasıl çalıştığını biraz anlamanız gerekmektedir. Örnek vermek gerekirse Linux İşletim sistemini ele alalım.
 
@@ -73,31 +73,31 @@ OS Kernel donanum ile etikleşimden sorumludur. OS Kernel aynı kalır. Fakat ü
 
 Yukarıda söylediğim gibi Docker Container'ları ortak **OS Kernel** kullanır. Peki bu gerçekten ne anlama gelir?
 
-![Docker Nasıl Çalışıyor?](./images/7-docker-nasil-calisiyor.png)
+![Docker Nasıl Çalışıyor?](https://github.com/gkandemi/docker/blob/main/docs/images/7-docker-nasil-calisiyor.png)
 
 Diyelim ki siz Linux üzerine Docker yüklediniz. Docker aynı kernele sahip herhangi bir linux sürümünü container olarak çalıştırabilir. Bu durumda kernel ortak olarak paylaşıldığında yazılım seti container içerisinde kullandığımız linux sürümünden gelir.
 
-![Docker Nasıl Çalışıyor?](./images/8-docker-nasil-calisiyor.png)
+![Docker Nasıl Çalışıyor?](https://github.com/gkandemi/docker/blob/main/docs/images/8-docker-nasil-calisiyor.png)
 
 Eğer siz Linux OS üzerine yüklemiş olduğunuz bir Docker ile Windows işletim sistemine sahip bir contianer çalıştırmak isterseniz bunu yapamazsınız. Çünkü container'ların ortak bir kernel paylaştığını söylemiştik. Doğal olarak Linux Kerneli ile Windows'un kerneli farklı olduğu için bu container'ı çalıştıramazsınız.
 
 O zaman Windows üzerine Docker yükleyebilirim ve Docker üzerinden Windows base container'lar çalıştırabilirim diye düşünebilirsiniz. Fakat bu da mümkün değil.
 
-![Docker Nasıl Çalışıyor?](./images/9-docker-nasil-calisiyor.png)
+![Docker Nasıl Çalışıyor?](https://github.com/gkandemi/docker/blob/main/docs/images/9-docker-nasil-calisiyor.png)
 
 Buradaki durum sizi aldatmasın çünkü windows işletim sistemine Docker yükleyebiliyorsunuz ve linux base bir container çalıştırmış da olabilirsiniz fakat burada çok önemli bir nokta Docker Host tarafından bizim bilmemize ihtiyacımız olmadan yapılıyor.
 
 Siz Windows üzerine docker yüklediğinizde Docker kendisi Linux bir VM üzerinden tüm yönetimini yapmaktadır. Doğal olarak siz yine Linux üzerinde Docker host çalıştırmış oluyorsunuz. Doğal olarak ortak kernel paylaşımı yine linux üzerinden olmaktadır. Bundan dolayı Windows işletim sistemi üzerinden yönettiğiniz docker host ile yine windows base bir container çalıştıramazsınız.
 
-![Docker Nasıl Çalışıyor?](./images/10-docker-nasil-calisiyor.png)
+![Docker Nasıl Çalışıyor?](https://github.com/gkandemi/docker/blob/main/docs/images/10-docker-nasil-calisiyor.png)
 
 Bunu yapabilmek için Windows Server üzerine kurmuş olduğunuz Docker üzerinden windows base bir container çalıştırabilirsiniz.
 
-![Docker Window Üzerinde Nasıl Çalışıyor?](./images/12-docker-windows-uzerinde-nasil-calisiyor.png)
+![Docker Window Üzerinde Nasıl Çalışıyor?](https://github.com/gkandemi/docker/blob/main/docs/images/12-docker-windows-uzerinde-nasil-calisiyor.png)
 
 ## VM vs Container
 
-![VM vs Docker](./images/13-vm-vs-container-utilization.png)
+![VM vs Docker](https://github.com/gkandemi/docker/blob/main/docs/images/13-vm-vs-container-utilization.png)
 
 - VM Hypervisor üzerinde her bir VM container'ını yönetir. Fakat bu her bir VM kendine **ait bir işletim sistemine sahiptir.**
 
@@ -134,7 +134,7 @@ Nasıl yapılacağını öğrenmek için ilk olarak Image konusunun ne olduğunu
 
 Docker'ı bilgisayarımıza kurduk. Peki Docker ile container'ları nasıl kullanacağız? Bunun için ilk olarak ihtiyacımız container'ımızın **base** yani **temelini** oluşturacak bir image elde etmek. Peki bu image'ı nereden alacağız?
 
-![Docker HUB](./images/16-docker-hub.png)
+![Docker HUB](https://github.com/gkandemi/docker/blob/main/docs/images/16-docker-hub.png)
 
 Bir çok şirket kendisine ait bir çok uygulamayı containerized edip **DockerHub** üzerinden bunu public ya da private olarak sunuyor. Siz bunlardan birini kullanmak istediğinizde bunun sadece
 
@@ -155,7 +155,7 @@ gibi.. farklı farklı instance'ları kendi ortamınıza rahatlıkla çekebilirs
 
 ## Container vs Image
 
-![Container vs Image](./images/17-container-vs-image.png)
+![Container vs Image](https://github.com/gkandemi/docker/blob/main/docs/images/17-container-vs-image.png)
 
 **Docker Image** sizin projeniz gibi düşünebilirsiniz. Projelerinizin dosyaları tüm ayarlar yani bir paket, template, plan gibi.
 
@@ -190,7 +190,7 @@ docker ps
 
 **ps** komutu çalışan tüm containerların listesini bilgileriyle beraber döker.
 
-![Docker ps command](./images/docker_ps_command.png)
+![Docker ps command](https://github.com/gkandemi/docker/blob/main/docs/images/docker_ps_command.png)
 
 her bir container random **isim ve id** bilgisi alır. Eğer çalışan ya da çalışmayan tüm container'ların listesini görmek istersek. Bu durumda **-a** parametresini göndermemiz gerekir.
 
@@ -198,7 +198,7 @@ her bir container random **isim ve id** bilgisi alır. Eğer çalışan ya da ç
 docker ps -a
 ```
 
-![Docker ps -a command](./images/docker_ps-a_command.png)
+![Docker ps -a command](https://github.com/gkandemi/docker/blob/main/docs/images/docker_ps-a_command.png)
 
 aynı işlemi
 
@@ -244,7 +244,7 @@ docker images
 
 bize docker hosts üzerinde bulunan tüm image listesini detayları ile getirir.
 
-![Docker images Command](./images/docker_images.png)
+![Docker images Command](https://github.com/gkandemi/docker/blob/main/docs/images/docker_images.png)
 
 peki bu image listesinden bir image silmek istersek ne yapabiliriz?
 
@@ -257,7 +257,7 @@ image'i silecektir.
 **Önemli Not**
 Bir image'i silmek için, bu image'i kullanan herhangi bir container olmaması gerekir. Bundan dolayı ilk olarak bu image'e bağlı tüm container'ları silip sonrasında bu komutu çalıştırmalısınız.
 
-![Docker rmi command](./images/docker_rmi_command.png)
+![Docker rmi command](https://github.com/gkandemi/docker/blob/main/docs/images/docker_rmi_command.png)
 
 Daha önceden **docker run nginx** ile beraber image'i bilgisayarımıza indirmiş ve bu sırada **ubuntu** image'ini yüklemesini beklemiştik. Tabi ki indirme ve çalıştırma esnasında bir bekleme süresi geçti. Bunu yapmak istemiyorsak? Yani sadece image'i indirip bırakmak istiyorsak bu durumda.
 
@@ -278,8 +278,8 @@ docker run -d imageName
 
 bu bize ayağa kaldırdığı container'in ID bilgisini verecektir.
 
-![Attach Detach](./images/docker_attach_detach_mode_command.png)
-![Attach Detach](./images/docker_attach_detach_mode_command_2.png)
+![Attach Detach](https://github.com/gkandemi/docker/blob/main/docs/images/docker_attach_detach_mode_command.png)
+![Attach Detach](https://github.com/gkandemi/docker/blob/main/docs/images/docker_attach_detach_mode_command_2.png)
 
 Eğer **detach** yapılmış bir container'ı **attach** moda geri sokmak istersek bunu için **attach** komutunu kullanabilirz.
 
@@ -305,8 +305,8 @@ docker run -d --name webapp nginx:1.14-alpine
 ### run -tag
 Bir image pull ettiğimizde bu image belirli bir sürüme sahip olur. Bu sürümün adına **tag** denilir. Son sürüm indirildiğinde bu tag **latest** olacaktır.
 
-![Docker Tag](./images/docker_tag.png)
-![Docker Tag](./images/docker_tag_2.png)
+![Docker Tag](https://github.com/gkandemi/docker/blob/main/docs/images/docker_tag.png)
+![Docker Tag](https://github.com/gkandemi/docker/blob/main/docs/images/docker_tag_2.png)
 
 ### run -stdin (-it/interactive terminal)
 
@@ -324,7 +324,7 @@ docker run -i testApp
 
 **-it** argümanını göndererek run ettiğiniz image'de bir user prompt varsa buna izin verir. **-i = interactive terminal** demektir.
 
-![Docker run it](./images/docker_run_it.png)
+![Docker run it](https://github.com/gkandemi/docker/blob/main/docs/images/docker_run_it.png)
 
 ### run -port mapping
 
@@ -342,11 +342,11 @@ docker run -p 80:5000 webApp
 
 şeklinde bir komut ile çalıştırdığımızda artık biz uygulamamıza (yani docker host/engine üzerindeki container'a) **80** portu üzerinden erişebiliriz. Fakat Docker Engine/Host içerisinde uygulamamız çalışırken **5000** üzerinden çalışmaya devam edecektir. Böylece portları maplemiş oluyoruz.
 
-![Port Mapping](./images/22-port-mapping.png)
+![Port Mapping](https://github.com/gkandemi/docker/blob/main/docs/images/22-port-mapping.png)
 
-![Port Mapping](./images/docker_port_mapping_1.png)
+![Port Mapping](https://github.com/gkandemi/docker/blob/main/docs/images/docker_port_mapping_1.png)
 
-![Port Mapping](./images/docker_port_mapping_2.png)
+![Port Mapping](https://github.com/gkandemi/docker/blob/main/docs/images/docker_port_mapping_2.png)
 
 ### run -volume mapping
 
@@ -360,9 +360,9 @@ docker run -v /opt/datadir:/var/lib/mysql mysql
 
 dediğimizde **mySQL**'in kayıtları sakladığı dizin olan **/var/lib/mysql**'deki verileri docker host içerisinde **/opt/datadir** klasöründe tutacaktır. Bu **/opt/datadir** klasörü docker host/engine tarafından izin verilen klasörlerden olmalıdır. Verilen data klasörü Container **silinse bile bilgiler docker engine üzerinde kalmaya devam eder**.
 
-![Volume Mapping](./images/19-docker-volume.png)
+![Volume Mapping](https://github.com/gkandemi/docker/blob/main/docs/images/19-docker-volume.png)
 
-![File Sharing](./images/docker_file_sharing.png)
+![File Sharing](https://github.com/gkandemi/docker/blob/main/docs/images/docker_file_sharing.png)
 
 ### inspect
 
@@ -722,7 +722,7 @@ docker-compose up
 
 dememiz yeterlidir. Bu bizim için içerisinde bulunan image tanımlarını bir bundle olarak yapar ve container'ı ayağa kaldıracaktır.
 
-![Docker Compose Up](./images/docker-compose.png)
+![Docker Compose Up](https://github.com/gkandemi/docker/blob/main/docs/images/docker-compose.png)
 
 #### Docker Networks
 
@@ -758,7 +758,7 @@ Docker host üzerinde yapabileceğimiz işlemler için kullanılan network tür�
 docker run --network=host mongo
 ```
 
-![Docker Network Types](./images/25-docker-network-turleri.png)
+![Docker Network Types](https://github.com/gkandemi/docker/blob/main/docs/images/25-docker-network-turleri.png)
 
 Peki biz 2 container sadece bir network üzerinde diğer 2 container'da farklı bir network üzerinde çalışmasını isteseydik(yani birbirlerinden izole etmek isteseydik) nasıl bir network türü oluşturacaktık?
 
@@ -768,7 +768,7 @@ Peki biz 2 container sadece bir network üzerinde diğer 2 container'da farklı 
 docker network create --driver bridge --subnet 182.18.0.1/24 --gateway 182.18.0.1 wp-mysql-network
 ```
 
-![Docker User Defined Network Types](./images/25-docker-network-turleri-2.png)
+![Docker User Defined Network Types](https://github.com/gkandemi/docker/blob/main/docs/images/25-docker-network-turleri-2.png)
 
 ```
 docker network ls
@@ -892,6 +892,6 @@ dedikten sonra artık DockerHub'a gönderebiliriz.
 docker image push --all-tags gkandemir/counter-app
 ```
 
-![Docker Image Push](./images/docker_image_push.png)
+![Docker Image Push](https://github.com/gkandemi/docker/blob/main/docs/images/docker_image_push.png)
 
-![DockerHub](./images/docker_hub_images.png)
+![DockerHub](https://github.com/gkandemi/docker/blob/main/docs/images/docker_hub_images.png)

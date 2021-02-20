@@ -2,7 +2,7 @@
 
 ### Giriş Konuşması
 
-**Klasik Yönetem ile**
+**Klasik Yöntem ile**
 Yazılımcılar geliştirmiş oldukları yazılımı Production ortamına almak için **DevOps** ekibiyle görüşür ve dosyaları iletir. Bu dosyalar yazılım ve environment'in nasıl ayarlanacağına ait bilgileri de içerir. Devops yazılımı kendisi yazmadığı için doğal olarak bunun sıkıntısını çok fazla yaşarlar ve uygulamayı başarılı bir şekilde aynı development ve test envlerinde olduğu gibi çalıştırmak için uğraşırlar.
 
 **Docker ile**
@@ -14,7 +14,8 @@ docker run imageName
 
 ile **container** haline getirmek olacaktır. Bu da tamı tamına yazılımcının istediği envye sahip tüm ayarlar yapılmış halde uygulamanın çalışabileceği en iyi ortamı kurmak demektir.
 
-## Neden Docker'a İhtiyacımız var?
+## Neden Docker'a İhtiyacımız var?
+
 ![Neden Docker'a İhtiyacımız var?](https://github.com/gkandemi/docker/blob/main/docs/images/2-neden-ihtiyacimiz-var.png)
 
 Tüm bu uygulamalar OS ile uyumlu olacak şekilde çalışır. Bizim bu uyumu OS sürümüne göre her bir servis için ayrı ayrı sağlamamız gerekir.
@@ -22,7 +23,7 @@ Tüm bu uygulamalar OS ile uyumlu olacak şekilde çalışır. Bizim bu uyumu OS
 İşte burada problem ortaya çıkmaya başlıyor.
 
 - Peki gerçekten bu uyum her bir servis için geçerli olabilir mi? Bazen mümkün bazen mümkün olmayabilir.
-- Zamanla bu servisler güncellenir ya da servisler içerisinde kullanılan bağımlılıklar kullanmış olduğumuz servisler ile uyumlu olmayabilir.Tabi ki yapabileceğimiz en mantıklı çözüm bu servis için uygun bir işletim sistemini bulmak olacaktır. Peki bulacağımız uygun işletim sistemi diğer servisler için uyumlu olacak mıdır?
+- Zamanla bu servisler güncellenir ya da servisler içerisinde kullanılan bağımlılıklar kullanmış olduğumuz servisler ile uyumlu olmayabilir. Tabii ki yapabileceğimiz en mantıklı çözüm bu servis için uygun bir işletim sistemini bulmak olacaktır. Peki bulacağımız uygun işletim sistemi diğer servisler için uyumlu olacak mıdır?
 - Diğer problem ise bu bağımlılıkların birbirlerini etkilemesi.
 - Uygulamanın çalışacağı ortamı, sürece dahil olan tüm ekibin sahip olması beklenemez (Development / Test / Production)
 
@@ -36,7 +37,7 @@ Tam olarak burada bu servisler arasında iletişimi en iyi şekilde yapacak ve b
 
 Burada **Docker** devreye giriyor. Docker'ın yapmış olduğu işlem her bir servisi **aynı işletim sistemi üzerinde** kendilerine ait bir dünyada çalışmasını sağlayarak kendilerine ait kütüphaneleri ve bağımlılıkları olmasını sağlıyor.(Elbette çok daha fazlasını da bize sağlıyor fakat şimdilik burada kalalım :))
 
-Böylece herhangi bir developer kendi uygulamasının çalışması için gereken Docker konfigürasyon dosyasını oluşturduktan sonra, bu servisin ayağa kalması/çalışması için `docker run` demesi yetiyor. Bu sadece geliştirici için değil bu sürece dahil olan herkes için geçerli oluyor. Tek komut aynı environment (ortam).
+Böylece herhangi bir developer kendi uygulamasının çalışması için gereken Docker konfigürasyon dosyasını oluşturduktan sonra, bu servisin ayağa kalkması/çalışması için `docker run` demesi yetiyor. Bu sadece geliştirici için değil bu sürece dahil olan herkes için geçerli oluyor. Tek komut aynı environment (ortam).
 
 Docker bunu yaparken **container** yapısından yararlanıyor. Peki Container Nedir?
 
@@ -69,7 +70,7 @@ Tüm Linux tabanlı işletim sistemlerine bakacak olursanız bu işleletim siste
 - OS Kernel
 - Bir çok yazılım seti
 
-OS Kernel donanum ile etikleşimden sorumludur. OS Kernel aynı kalır. Fakat üzerindeki yazılım setleri işletim sistemleri arasındaki farkları belirler. Bundan dolayı sürekli bir Linux dağıtımı gibi cümleler duyarsınız. Bu yazılım setleri bir çok farklılıklar içerebilir. Grafik arayüzleri, sürücüler, geliştiriciler için komut setleri ve çok daha fazlası.
+OS Kernel donanım ile etkileşimden sorumludur. OS Kernel aynı kalır. Fakat üzerindeki yazılım setleri işletim sistemleri arasındaki farkları belirler. Bundan dolayı sürekli bir Linux dağıtımı gibi cümleler duyarsınız. Bu yazılım setleri bir çok farklılıklar içerebilir. Grafik arayüzleri, sürücüler, geliştiriciler için komut setleri ve çok daha fazlası.
 
 Yukarıda söylediğim gibi Docker Container'ları ortak **OS Kernel** kullanır. Peki bu gerçekten ne anlama gelir?
 
@@ -79,7 +80,7 @@ Diyelim ki siz Linux üzerine Docker yüklediniz. Docker aynı kernele sahip her
 
 ![Docker Nasıl Çalışıyor?](https://github.com/gkandemi/docker/blob/main/docs/images/8-docker-nasil-calisiyor.png)
 
-Eğer siz Linux OS üzerine yüklemiş olduğunuz bir Docker ile Windows işletim sistemine sahip bir contianer çalıştırmak isterseniz bunu yapamazsınız. Çünkü container'ların ortak bir kernel paylaştığını söylemiştik. Doğal olarak Linux Kerneli ile Windows'un kerneli farklı olduğu için bu container'ı çalıştıramazsınız.
+Eğer siz Linux OS üzerine yüklemiş olduğunuz bir Docker ile Windows işletim sistemine sahip bir container çalıştırmak isterseniz bunu yapamazsınız. Çünkü container'ların ortak bir kernel paylaştığını söylemiştik. Doğal olarak Linux Kerneli ile Windows'un kerneli farklı olduğu için bu container'ı çalıştıramazsınız.
 
 O zaman Windows üzerine Docker yükleyebilirim ve Docker üzerinden Windows base container'lar çalıştırabilirim diye düşünebilirsiniz. Fakat bu da mümkün değil.
 
@@ -146,9 +147,9 @@ docker run imageName
 
 ```
 
-docker run nodejs
+docker run node
 docker run redis
-docker mongodb
+docker run mongo
 ```
 
 gibi.. farklı farklı instance'ları kendi ortamınıza rahatlıkla çekebilirsiniz.
@@ -163,9 +164,9 @@ gibi.. farklı farklı instance'ları kendi ortamınıza rahatlıkla çekebilirs
 
 Ayrıca siz de kendinize ait **image** dosyalarınızı üretebilir ve bunu Docker Hub Repository'e gönderebilirsiniz. Böylece Public ya da Private olarak diğer geliştiriciler bundan yararlanabilirler.
 
-## Docker Sürümleri
+## Docker Sürümleri
 
-- **Comminity Edition**
+- **Community Edition**
   - Ücretsiz sürüm ve belirli ücretsiz yönetim sistemleri mevcut. Community edition linux, mac, windows, cloud olarak erişebiliyor. Eğer Mac ve Windows sahibiyseniz bunun için **Docker Desktop** yüklemeniz ya da Virtualization özelliği bulunan Linux VM yüklemeniz gerekebilir.
 - **Enterprise Edition**
   - Ücretli
@@ -301,14 +302,16 @@ yazdığımızda bu bizim için **detach** moda sokulan container'ın ID bilgisi
 docker run -d --name webapp nginx:1.14-alpine
 ```
 
-## Docker Run Komutu
-### run -tag
+## Docker Run Komutu
+
+### run -tag
+
 Bir image pull ettiğimizde bu image belirli bir sürüme sahip olur. Bu sürümün adına **tag** denilir. Son sürüm indirildiğinde bu tag **latest** olacaktır.
 
 ![Docker Tag](https://github.com/gkandemi/docker/blob/main/docs/images/docker_tag.png)
 ![Docker Tag](https://github.com/gkandemi/docker/blob/main/docs/images/docker_tag_2.png)
 
-### run -stdin (-it/interactive terminal)
+### run -stdin (-it/interactive terminal)
 
 Örneğin terminal üzerinde kullanıcıdan bir bilgi alan uygulamanız var ve bu uygulamayı dockerize ettiniz. Bu uygulamanın image adı **testApp** olsun;
 
@@ -319,16 +322,16 @@ docker run testApp
 dediğinizde, çalışan uygulama sizden herhangi bir bilgi almadan sonlanacaktır. Çünkü Docker prompt default olarak kullanıcıdan bilgi almamaya programlıdır. Fakat bunu değiştirebiliriz.
 
 ```
-docker run -i testApp
+docker run -it testApp
 ```
 
-**-it** argümanını göndererek run ettiğiniz image'de bir user prompt varsa buna izin verir. **-i = interactive terminal** demektir.
+**-it** argümanını göndererek run ettiğiniz image'de bir user prompt varsa buna izin verir. **-it = interactive terminal** demektir.
 
 ![Docker run it](https://github.com/gkandemi/docker/blob/main/docs/images/docker_run_it.png)
 
-### run -port mapping
+### run -port mapping
 
-Bir container ayaga kaldırdığımızda bu image bir porta sahip olur. Biz bu ayağa kaldırdığımız uygulamaya yani container'a dışarıdan erişmek istediğimizde bu portu kullanarak **erişemeyiz**. Bunun yerine **port mapping** yapmalıyız. Bunu yapmak oldukça basit.
+Bir container ayağa kaldırdığımızda bu image bir porta sahip olur. Biz bu ayağa kaldırdığımız uygulamaya yani container'a dışarıdan erişmek istediğimizde bu portu kullanarak **erişemeyiz**. Bunun yerine **port mapping** yapmalıyız. Bunu yapmak oldukça basit.
 
 ```
 docker run -p DIS_PORT:IC_PORT imageName
@@ -348,7 +351,7 @@ docker run -p 80:5000 webApp
 
 ![Port Mapping](https://github.com/gkandemi/docker/blob/main/docs/images/docker_port_mapping_2.png)
 
-### run -volume mapping
+### run -volume mapping
 
 Docker container içerisinde veriler herhangi bir şekilde kalıcı olamaz. Bundan dolayı dockerize ettiğiniz uygulamanız dosya sistemi üzerinde eğer veri saklamaya ihtiyaç duyuyorsa ya da container içerisinde veri tabanı barındıran bir sistem de olabilir (mysql, mongodb vs.). Bu durumda volume kullanarak persistency sağlıyoruz yani kalıcılık. Bunun için **container dışında** bir location seçerek **run** komutu ile beraber **volume mapping** yapıyoruz.
 
@@ -364,7 +367,7 @@ dediğimizde **mySQL**'in kayıtları sakladığı dizin olan **/var/lib/mysql**
 
 ![File Sharing](https://github.com/gkandemi/docker/blob/main/docs/images/docker_file_sharing.png)
 
-### inspect
+### inspect
 
 Docker ps komutu contariner'lar hakkinda birçok bilgiyi bizimle paylaşır. Fakat daha fazla bilgiye ihtiyaciniz olursa **inspect** komutu bu bilgileri bize sağlar.
 
@@ -372,7 +375,8 @@ Docker ps komutu contariner'lar hakkinda birçok bilgiyi bizimle paylaşır. Fak
 docker inspect containerName
 ```
 
-### Container logs
+### Container logs
+
 Özellikle -d **dettach** mod ile çalışan bir container'a ait logları görmek için logs komutunu kullanabilirsiniz.
 
 ```
@@ -387,10 +391,11 @@ Bir image'e tag vermek istiyorsak bu oldukça kolay.
 docker image tag imageID/imageName tagName
 ```
 
-### Docker Images
+### Docker Images
+
 Kendimize ait bir docker image yaratmak istersek bunu yapabildiğimiz yollardan bir tanesi **Dockerfile** oluşturmak. Dockerfile docker tarafından bilinen image yaratırken bizim image'imizin içerisinde bulunmasını istediğimiz tüm yapıları barındıran bir dosyadır.
 
-Genel olarak Dockerfile içerisinde yazdığımız komuların yapısı şu şekildedir.
+Genel olarak Dockerfile içerisinde yazdığımız komutların yapısı şu şekildedir.
 
 ```
 KOMUT ARGUMAN
@@ -494,14 +499,15 @@ CMD ["node", "app.js"]
 
 Eğer buradaki Layer'lardan herhangi birine sahip başka bir image daha build edecek olursak Docker Engine o layer'ı build etmez onun yerine build edilmiş olanı tekrardan kullanır.
 
-### Build Image With Tag Name (Bir image'e build anında isim vermek)
+### Build Image With Tag Name (Bir image'e build anında isim vermek)
+
 Eğer bir image'e build edilirken bir isim (tag) vermek istiyorsak **-t** opsiyonu kullanılabilir. Tam olarak kullanımı ise şu şekilde.
 
 ```
 docker build . -t tagName
 ```
 
-#### Peki Dockerfile içerisindeki yapıları neye göre oluşturuyoruz?
+#### Peki Dockerfile içerisindeki yapıları neye göre oluşturuyoruz?
 
 Bu aslında tahmininizden çok kolay. Eğer docker komut setini aklınızda tutamıyorsanız ya da tam olarak nerede ne yapacağınızı bilmiyorsanız bunu herhangi OS üzerinde nasıl adım adım yapıyorsunuz ilk olarak onu düşünün. Daha sonrasında yaptığınız tüm adımları bir kenara not alın ve başlarına Docker Komut setlerini yerleştirin.
 
@@ -533,7 +539,7 @@ Bir çok uygulama deploy edildiği yerde bulunan environment değişkenlerine g�
 Bu işlem için `-e DEGISKEN=DEGER` şeklinde tanımlama yapabiliyoruz. Burada istediğimiz kadar parametre gönderebiliriz.
 
 ```
-docker run -r CHANNEL_NAME=kablosuzkedi
+docker run -e CHANNEL_NAME=kablosuzkedi
 ```
 
 çalışan bir container'ın sahip olduğu ENV değişkenlerinin bilgilerine ulaşmak için;
@@ -810,7 +816,7 @@ mysql.connect(mysql-db)
 
 şeklinde bağlantı yaptığımızda container, diğer container içerisinde bulunan mysql instance'ına erişebilecektir.
 
-### ÖRNEK
+### ÖRNEK
 
 ```
 docker network create --driver bridge --subnet 182.18.0.1/24 --gateway 182.18.0.1 wp-mysql-network

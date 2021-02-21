@@ -16,7 +16,7 @@ Bu doküman [kablosuzkedi Youtube Kanalı](https://youtube.com/kablosuzkedii) i�
 
 ### Klasik Senaryolar
 
-**Klasik Yönetem ile**
+**Klasik Yöntem ile**
 Yazılımcılar geliştirmiş oldukları yazılımı Production ortamına almak için **DevOps** ekibiyle görüşür ve dosyaları iletir. Bu dosyalar yazılım ve environment'in nasıl ayarlanacağına ait bilgileri de içerir. Devops yazılımı kendisi yazmadığı için doğal olarak bunun sıkıntısını çok fazla yaşarlar ve uygulamayı başarılı bir şekilde aynı development ve test envlerinde olduğu gibi çalıştırmak için uğraşırlar.
 
 **Docker ile**

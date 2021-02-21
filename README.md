@@ -1,7 +1,5 @@
 ![Docker?](https://github.com/gkandemi/docker/blob/main/docs/images/1-docker.png)
 
-**NOT**
-
 Bu doküman [kablosuzkedi Youtube Kanalı](https://youtube.com/kablosuzkedii) için hazırlanmıştır. Bu içerikte bulunan konular ve daha fazlası için video serisine de göz atabilirsiniz.
 
 [Docker Nedir Nasıl Kullanılır? | Part #1 | Image Nedir? Container Nedir? Docker Komutları

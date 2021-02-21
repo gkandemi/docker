@@ -1,0 +1,21 @@
+{
+  "name": "10-upload-files",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@uppy/core": "^1.16.1",
+    "@uppy/dashboard": "^1.16.1",
+    "@uppy/webcam": "^1.8.5",
+    "@uppy/xhr-upload": "^1.7.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "multer": "^1.4.2"
+  }
+}

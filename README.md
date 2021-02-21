@@ -895,3 +895,199 @@ docker image push --all-tags gkandemir/counter-app
 ![Docker Image Push](https://github.com/gkandemi/docker/blob/main/docs/images/docker_image_push.png)
 
 ![DockerHub](https://github.com/gkandemi/docker/blob/main/docs/images/docker_hub_images.png)
+
+### Ubuntu'ya Docker Yüklemek | Production | Reverse Proxy
+
+Bu işlem için ilk olarak DigitalOcean üzerinden Ubuntu 20.04(LTS) bir sunucu aldım ve onunla yoluma devam ettim. Sunucuya ssh ile giriş yaptıktan sonra aşağıdaki gibi adımları teker teker uyguladım fakat bunlar için 2 farklı kaynak önerebilirim size;
+
+**Ubuntu'ya Docker Yüklemek**
+[Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
+
+**Reverse Proxy Açıklaması**
+[Install Docker Engine on Ubuntu](https://www.scaleway.com/en/docs/how-to-configure-nginx-reverse-proxy/)
+
+Yine ben buraya kendi adımlarımızı da yazıyorum çünkü biz 2 farklı domain'i tek bir host üzerine yönlendirdik. Yukarıdaki Reverse Proxy açıklaması tam olarak yaptıklarımızı karşılamıyor yine de okumanızda fayda vardır :)
+
+İlk olarak paket listesini güncelleyip ihtiyacımız olan bazı yüklüyoruz.
+
+```
+sudo apt-get update
+apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+```
+
+Docker ve Docker Compose kurulumlarını yapıp versiyonlarını kontrol ediyoruz
+
+```
+apt install docker.io
+docker --version
+
+apt install docker-compose
+docker-compose --version
+```
+
+Docker servisinin çalışıp çalışmadığına dikkat edelim. Eğer burada **active(Running)** gibi bir ifade yoksa servisi çalıştırmalıyız.
+
+```
+systemctl status docker
+```
+
+Çalıştırmak için;
+
+```
+systemctl start docker
+```
+
+Şimdi Docker yüklendi 2 farklı uygulamayı iki farklı domain tarafından görüntülenebilecek şekilde ayarlayacağız hostumuzu fakat öncesinde bu iki uygulamayı Docker üzerinen sunmamız gerekiyor. Yani Container'ları ayağa kaldırmamız lazım. Container için gerekli olanlar nedir? **Image**. O halde image'leri oluşturmaya başlayalım.
+
+Bunun için **/temp** altında **web-apps** isimli bir klasör oluşturduk ve onun içerisinde **wordpress** ve **asana-clone** isimli 2 farklı klasör oluşturduk.
+
+```
+mkdir web-app/wordpress
+mkdir web-app/asana-clone
+```
+
+WordPress kurulumu için wordpress klasörü içerisinde **docker-compose.yml** dosyasını oluşturup içerisine aşağıdaki kodları yazabilirsiniz.
+
+```
+version: "3.4"
+services:
+  wordpress:
+    image: wordpress
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: bloguser
+      WORDPRESS_DB_PASSWORD: test123
+      WORDPRESS_DB_NAME: blogdb
+    volumes:
+      - wordpress:/var/www/html
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: blogdb
+      MYSQL_USER: bloguser
+      MYSQL_PASSWORD: test123
+      MYSQL_RANDOM_ROOT_PASSWORD: "1"
+    volumes:
+      - db:/var/lib/mysql
+volumes:
+  wordpress:
+  db:
+```
+
+daha sonrasında yapacağımız tek işlem;
+
+```
+docker-compose up
+```
+
+**ÖNEMLİ NOT:** bunu yaparken `/tmp/web-apps/wordpress` dizininde olduğunuzdan emin olun.
+
+Asana Clone App kurulumu için ise Local üzerinden dosyayı aktardık. Onun içerisinde zaten bir `app/` ve bir de `Dockerfile` olduğu için onu direk sunucuya `scp` yardımı ile gönderdik.
+
+Örnek Dockerfile içeriği;
+
+```
+FROM node:14-slim
+WORKDIR /vue-app
+COPY app/ .
+RUN npm install
+RUN npm install -g live-server
+RUN npm run build
+EXPOSE 8080
+CMD ["live-server", "dist"]
+```
+
+Bu Dockerfile üzerinden image üretmek için de;
+
+```
+docker build . -t asana-clone-app
+```
+
+dememiz yeterlidir. Bu image'i çalıştırmak için ise;
+
+```
+docker run -p 8090:8080 -d asana-clone-app
+```
+
+dememiz yeterli olacaktır.
+
+**ÖNEMLİ NOT:** bunun içinde `/temp/web-apps/asana-clone/` dizininde olduğunuzdan emin olun.
+
+Artık Sunucu üzerinde **8090** portundan **Asana** uygulamasını, **8080** portu üzerinden ise **wordpress** uygulamasını ayağa kaldırdık.
+
+Elimizde 2 farklı domain var;
+
+- videomeet.app
+- talkinghead.app
+
+bu iki domaini ilk başta DigitalOcean üzerinden almış olduğumuz Sunucunun **IP Adresine** CloudFlare üzerinden yönlendirdik. Yani kullanıcı bu iki domainden hangisine girerse girsin aynı makineye yönlendirilecek.
+
+Şimdi yapmamız gereken ise buradaki domainin ismine göre (talkinghead ya da videomeet) ilgili container'a yönlendirmek olacak. İşte bu duruma **reverse proxy** deniliyor. Bunu yapmak için sunucuda yoksa **nginx** yüklemeliyiz. Ardından da `sites-available` dizinine girip orada `reverse-proxy.conf` dosyası üreteceğiz. Yazacağımız Reverse Proxy bilgisini bu konfigürasyon dosyasında saklayacağız.
+
+```
+apt install nginx
+unlink /etc/nginx/sites-enabled/default
+cd /etc/nginx/sites-available
+vi reverse-proxy.conf
+```
+
+Konfigürasyon ise;
+
+```
+server {
+        listen 80;
+        listen [::]:80;
+        server_name videomeet.app;
+        server_name_in_redirect off;
+
+        access_log /var/log/nginx/reverse-access.log;
+        error_log /var/log/nginx/reverse-error.log;
+
+        location / {
+            proxy_set_header Client-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header Host $host;
+            proxy_pass http://127.0.0.1:8080;
+  }
+}
+
+server {
+        listen 80;
+        listen [::]:80;
+        server_name talkinghead.app;
+        server_name_in_redirect off;
+
+        access_log /var/log/nginx/reverse-access.log;
+        error_log /var/log/nginx/reverse-error.log;
+
+        location / {
+            proxy_set_header Client-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header Host $host;
+            proxy_pass http://127.0.0.1:8090;
+  }
+}
+```
+
+daha sonrasında şu adımları yapmalıyız;
+
+```
+ln -s /etc/nginx/sites-available/reverse-proxy.conf /etc/nginx/sites-enabled/reverse-proxy.conf
+nginx -t
+systemctl restart nginx
+systemctl status nginx
+```
+
+burayı özet geçecek olursak `sites-available` içerisindeki reverse-proxy.conf dosyasını `sites-enabled` içerisine aktarıyoruz ve nginx'i test ediyoruz. Burada eğer **success** görüyorsanız her şey yolunda demektir :)
+
+Bundan sonraki tek adım ise **nginx** servisini yeniden başlatmak demektir :)
+
+Böylece 2 farklı domain tek sunucu üzerinen docker host'un farklı uçlarına bakıyor hale geldiler.

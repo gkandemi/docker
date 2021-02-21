@@ -1,6 +1,22 @@
 ![Docker?](https://github.com/gkandemi/docker/blob/main/docs/images/1-docker.png)
 
-### Giriş Konuşması
+**NOT**
+
+Bu doküman [kablosuzkedi Youtube Kanalı](https://youtube.com/kablosuzkedii) için hazırlanmıştır. Bu içerikte bulunan konular ve daha fazlası için video serisine de göz atabilirsiniz.
+
+[Docker Nedir Nasıl Kullanılır? | Part #1 | Image Nedir? Container Nedir? Docker Komutları
+](https://www.youtube.com/watch?v=4XVfmGE1F_w)
+
+[Docker Network Türleri | Dockerfile ile Image Nasıl Üretilir | Part #2
+](https://www.youtube.com/watch?v=ZeYIp1PrWXc)
+
+[Docker Compose ile Servis Yönetimi Part #3 | Twitter, Asana, Wordpress, MongoDB NodeJS Uygulamaları
+](https://www.youtube.com/watch?v=cu3_ldKZ0os)
+
+[Linux'a Docker Kurulumu | Production | Nginx | Reverse Proxy ile 2 Domain 1 Host Yönetimi | Part #4
+](https://www.youtube.com/watch?v=JU5vvLNipXY)
+
+### Klasik Senaryolar
 
 **Klasik Yönetem ile**
 Yazılımcılar geliştirmiş oldukları yazılımı Production ortamına almak için **DevOps** ekibiyle görüşür ve dosyaları iletir. Bu dosyalar yazılım ve environment'in nasıl ayarlanacağına ait bilgileri de içerir. Devops yazılımı kendisi yazmadığı için doğal olarak bunun sıkıntısını çok fazla yaşarlar ve uygulamayı başarılı bir şekilde aynı development ve test envlerinde olduğu gibi çalıştırmak için uğraşırlar.
@@ -896,7 +912,7 @@ docker image push --all-tags gkandemir/counter-app
 
 ![DockerHub](https://github.com/gkandemi/docker/blob/main/docs/images/docker_hub_images.png)
 
-### Ubuntu'ya Docker Yüklemek | Production | Reverse Proxy
+### Ubuntu'ya Docker Yüklemek | Production | Reverse Proxy
 
 Bu işlem için ilk olarak DigitalOcean üzerinden Ubuntu 20.04(LTS) bir sunucu aldım ve onunla yoluma devam ettim. Sunucuya ssh ile giriş yaptıktan sonra aşağıdaki gibi adımları teker teker uyguladım fakat bunlar için 2 farklı kaynak önerebilirim size;
 
@@ -904,11 +920,11 @@ Bu işlem için ilk olarak DigitalOcean üzerinden Ubuntu 20.04(LTS) bir sunucu 
 [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
 
 **Reverse Proxy Açıklaması**
-[Install Docker Engine on Ubuntu](https://www.scaleway.com/en/docs/how-to-configure-nginx-reverse-proxy/)
+[Reverse Proxy NGINX](https://www.scaleway.com/en/docs/how-to-configure-nginx-reverse-proxy/)
 
 Yine ben buraya kendi adımlarımızı da yazıyorum çünkü biz 2 farklı domain'i tek bir host üzerine yönlendirdik. Yukarıdaki Reverse Proxy açıklaması tam olarak yaptıklarımızı karşılamıyor yine de okumanızda fayda vardır :)
 
-İlk olarak paket listesini güncelleyip ihtiyacımız olan bazı yüklüyoruz.
+İlk olarak paket listesini güncelleyip ihtiyacımız olan bazı paketleri yüklüyoruz.
 
 ```
 sudo apt-get update

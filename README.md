@@ -64,13 +64,13 @@ Container, kendilerine ait prosesleri, servisleri, networkleri bulunan tamamen i
 
 ![Ne Güzel Bir Teknoloji?](https://github.com/gkandemi/docker/blob/main/docs/images/5-ne-guzel-bir-teknoloji.png)
 
-Bu ifade size oldukça devrimsel ve Docker ile yeni ortaya atılmış bir fikir gibi gelebilir fakat tam olarak öyle değil :) Container yaklaşık 10 yıldan beri kullanılmaktadır. Container'ların bir çok türü bulunmaktadır. Bunlardan bazıları;
+Bu ifade size oldukça devrimsel ve Docker ile yeni ortaya atılmış bir fikir gibi gelebilir fakat tam olarak öyle değil :) Container yaklaşık 10 yıldan beri kullanılmaktadır. Container'ların bir çok türü bulunmaktadır. Linux tarafında bunlardan bazıları;
 
 - LXC
 - LXD
 - LXCFS
 
-docker bu container türlerinden **LXC container** türünü kullanmaktadır. İşte bu container'ları yönetmek oldukça zor ve low level bir işlem olduğundan dolayı docker bize bu işleri kolaylaştırmak için high level birçok araç sunuyor. Böylece kullanıcılar container'ları istedikleri gibi kolaylıkla yönetebiliyor.
+docker Linux'de bu container türlerinden **LXC container** türünü kullanmaktadır. Windows'da ise bu iş için kullanılan adı **Windows Server Container Support***'dur. İşte bu container'ları yönetmek oldukça zor ve low level bir işlem olduğundan dolayı docker bize bu işleri kolaylaştırmak için high level birçok araç sunuyor. Böylece kullanıcılar container'ları istedikleri gibi kolaylıkla yönetebiliyor.
 
 ## Docker Nasıl Çalışıyor?
 

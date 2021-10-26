@@ -28,7 +28,8 @@ docker run imageName
 
 ile **container** haline getirmek olacaktır. Bu da tamı tamına yazılımcının istediği envye sahip tüm ayarlar yapılmış halde uygulamanın çalışabileceği en iyi ortamı kurmak demektir.
 
-## Neden Docker'a İhtiyacımız var?
+## Neden Docker'a İhtiyacımız var?
+
 ![Neden Docker'a İhtiyacımız var?](https://github.com/gkandemi/docker/blob/main/docs/images/2-neden-ihtiyacimiz-var.png)
 
 Tüm bu uygulamalar OS ile uyumlu olacak şekilde çalışır. Bizim bu uyumu OS sürümüne göre her bir servis için ayrı ayrı sağlamamız gerekir.

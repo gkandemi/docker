@@ -548,7 +548,7 @@ Bir çok uygulama deploy edildiği yerde bulunan environment değişkenlerine g�
 Bu işlem için `-e DEGISKEN=DEGER` şeklinde tanımlama yapabiliyoruz. Burada istediğimiz kadar parametre gönderebiliriz.
 
 ```
-docker run -r CHANNEL_NAME=kablosuzkedi
+docker run -e CHANNEL_NAME=kablosuzkedi
 ```
 
 çalışan bir container'ın sahip olduğu ENV değişkenlerinin bilgilerine ulaşmak için;

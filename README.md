@@ -84,7 +84,7 @@ Tüm Linux tabanlı işletim sistemlerine bakacak olursanız bu işleletim siste
 - OS Kernel
 - Bir çok yazılım seti
 
-OS Kernel donanum ile etikleşimden sorumludur. OS Kernel aynı kalır. Fakat üzerindeki yazılım setleri işletim sistemleri arasındaki farkları belirler. Bundan dolayı sürekli bir Linux dağıtımı gibi cümleler duyarsınız. Bu yazılım setleri bir çok farklılıklar içerebilir. Grafik arayüzleri, sürücüler, geliştiriciler için komut setleri ve çok daha fazlası.
+OS Kernel donanim ile etikleşimden sorumludur. OS Kernel aynı kalır. Fakat üzerindeki yazılım setleri işletim sistemleri arasındaki farkları belirler. Bundan dolayı sürekli bir Linux dağıtımı gibi cümleler duyarsınız. Bu yazılım setleri bir çok farklılıklar içerebilir. Grafik arayüzleri, sürücüler, geliştiriciler için komut setleri ve çok daha fazlası.
 
 Yukarıda söylediğim gibi Docker Container'ları ortak **OS Kernel** kullanır. Peki bu gerçekten ne anlama gelir?
 
